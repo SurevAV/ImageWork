@@ -70,13 +70,6 @@ for i in range(0, len(colors),K*3):
         palette.append(item[j:j+3])
     list_colors.append(palette)
 
-##count = 0
-##print(len(list_colors))
-##for i in range(len(list_colors)):
-##    for j in range(len(list_colors)):
-##        if i !=j and list_colors[i] == list_colors[j]:
-##            print(count)
-##            count+=1
 
     
     
@@ -97,71 +90,6 @@ img = img.reshape((shape))
 cv.imshow('res2',img)
 cv.waitKey(0)
 cv.destroyAllWindows()
-##print(options)
-##string = ''
-##for i in center:
-##    string = string + str(round(i[0],1)) +'-'+str(round(i[1],1)) +'-'+  str(round(i[2],1)) +'|'
-##string = string + '#'
-##
-##
-##label2 = []
-##for i in label:
-##    string = string + str(i[0])
-##    label2.append(i[0])
-##
-##print(label)
-##
-##label2 = bytes(label2)
-##
-##
-##
-##with open("image.c10", "wb") as binary_file:
-##   
-##    # Write bytes to file
-##    binary_file.write(zlib.compress(string.encode('utf-8')))
-##
-##with open("label2.c10", "wb") as binary_file:
-##   
-##    # Write bytes to file
-##    binary_file.write(zlib.compress(label2))
-##
-##    
-##center = np.uint8(center)
-##
-##res = center[label.flatten()]
-##res2 = res.reshape((img.shape))
-##cv.imshow('res2',res2)
-##cv.waitKey(0)
-##cv.destroyAllWindows()
-##
-##
-##
-###-------------------------------------------------
-##
-##str_object1 = open("image.c10", 'rb').read()
-##str_object2 = zlib.decompress(str_object1)
-##
-##image = str_object2.decode('utf-8').split("#")
-##
-##center = []
-##for item in image[0].split("|")[:-1]:
-##    center.append((item.split("-")))
-##
-##center = np.array(center,dtype = "float32")
-##
-##label= []
-##for i in image[1]:
-##    label.append(int(i))
-##
-##label = np.array(label,dtype = "int32")
-##
-##
-##center = np.uint8(center)
-##
-##res = center[label]
-##res2 = res.reshape((img.shape))
-##cv.imshow('res2',res2)
-##cv.waitKey(0)
-##cv.destroyAllWindows()
+
 
 
