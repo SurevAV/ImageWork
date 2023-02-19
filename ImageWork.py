@@ -1,22 +1,20 @@
 import numpy as np
 import cv2 as cv
 import zlib
-from array import array
 
-img = cv.imread('image2.jpg')
 
-encode_param = [int(cv.IMWRITE_JPEG_QUALITY), 90]
-result, encimg = cv.imencode('.jpg', img, encode_param)
-cv.imwrite('5.jpg', img)
+img = cv.imread('image.jpg')
 
+# длинна полоски пикселей
 step = 20
 Z = img.reshape((-1,3))
 Z = np.float32(Z)
 
 shape = img.shape
-print(shape)
 
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 10, 1.0)
+
+# количество цветов для кластеризации
 K = 4
 
 options = str(step)+'|'+str(shape[0])+'|'+str(shape[1])+'|'+str(K)
@@ -33,25 +31,29 @@ for i in range(0,len(Z),step):
     for j in label:
         numbers_colors.append(j[0])
         
-
+# сохранем цвета
 with open("numbers_colors", "wb") as binary_file:
     binary_file.write(zlib.compress(bytes(numbers_colors)))
-
+    
+# сохранем картинку в двоичном виде
 with open("colors", "wb") as binary_file:
     binary_file.write(zlib.compress(bytes(colors)))
-    
+
+# сохранем опции
 with open("options", "wb") as binary_file:
     binary_file.write(zlib.compress(options.encode('utf-8')))
 
-#---------------------------------------------------------------------------
+#---------------------------здесь раздел загрузки полученой кратинки--------------------
 
+# загружаем цвета
 colors = open("colors", 'rb').read()
 colors = list(zlib.decompress(colors))
 
+# загружаем картинку в двоичном виде
 numbers_colors = open("numbers_colors", 'rb').read()
 numbers_colors = list(zlib.decompress(numbers_colors))
 
-
+# загружаем опции
 options = open("options", 'rb').read()
 options = zlib.decompress(options)
 options = options.decode('utf-8').split("|")
@@ -82,12 +84,11 @@ for i in range(0, len(numbers_colors), step):
         img += colors_items[j]
     
 img = np.array(img, dtype ='uint8')
-##img = img.reshape(y, x)
 
 shape = (y,x,3)
 img = img.reshape((shape))
 
-cv.imshow('res2',img)
+cv.imshow('image',img)
 cv.waitKey(0)
 cv.destroyAllWindows()
 
