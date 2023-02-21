@@ -8,7 +8,7 @@
 
 Пример:
 
-До сжатия jpg картинка весом 565 кб
+До сжатия png картинка весом 565 кб
 
 ![image](https://user-images.githubusercontent.com/72144415/220369446-8548f97d-9123-40b0-a735-3619713efebd.png)
 
